@@ -106,8 +106,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Patches.cs" />
-    <Compile Include="Main.cs" />
+    <Compile Include="RespNoPreview\Patches.cs" />
+    <Compile Include="RespNoPreview\Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

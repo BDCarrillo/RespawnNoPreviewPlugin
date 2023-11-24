@@ -8,7 +8,6 @@ namespace RespawnMenuNoPreview
     {
         public void Init(object gameInstance)
         {
-            //new Harmony("RespawnMenuNoPreview").PatchAll(Assembly.GetExecutingAssembly());
             new Harmony(typeof(Main).Namespace).PatchAll(typeof(Main).Assembly);
         }
 
