@@ -118,8 +118,8 @@ namespace RespawnMenuNoPreview
             }
         }
 
-        /*
-        [HarmonyPatch(typeof(MyGuiScreenMedicals), "RequestReplicable")] //Tinkering with layer number
+        
+        [HarmonyPatch(typeof(MyGuiScreenMedicals), "RequestReplicable")] //Tinkering with layer number and suppressing unrequest
 
         public static class Patch_MyGuiScreenMedicals_RequestReplicable
         {
@@ -137,7 +137,7 @@ namespace RespawnMenuNoPreview
                 return false;
             }
         }
-        */
+        
 
         [HarmonyPatch]
         public static class Patch_MyGuiScreenMedicals_AddBlank //Add a fake, blank spawn location
