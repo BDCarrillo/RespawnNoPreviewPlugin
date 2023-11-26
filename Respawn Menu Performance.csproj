@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>RespawnMenuNoPreview</RootNamespace>
-    <AssemblyName>Respawn Menu No Preview</AssemblyName>
+    <AssemblyName>RespawnMenuPerformance</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -106,8 +106,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RespNoPreview\Patches.cs" />
-    <Compile Include="RespNoPreview\Main.cs" />
+    <Compile Include="RespPerf\Patches.cs" />
+    <Compile Include="RespPerf\Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

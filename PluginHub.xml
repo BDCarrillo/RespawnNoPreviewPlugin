@@ -2,12 +2,12 @@
 <PluginData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="GitHubPlugin">
   <Id>BDCarrillo/RespawnNoPreviewPlugin</Id>
   <GroupId>BDCarrillo/RespawnNoPreviewPlugin</GroupId>
-  <FriendlyName>Respawn Screen No Preview</FriendlyName>
+  <FriendlyName>Respawn Screen Performance</FriendlyName>
   <Author>BDCarrillo</Author>
   <Commit></Commit>
   <SourceDirectories>
-    <Directory>RespNoPreview</Directory>
+    <Directory>RespPerf</Directory>
   </SourceDirectories>
-  <Tooltip>Eliminates some streaming on spawn selection</Tooltip>
-  <Description>This plugin keeps the spawn screen black and only streams in the selected grid to avoid network strain when clicking around several spawn locations.</Description>
+  <Tooltip>Cut down on excessive streaming when respawning</Tooltip>
+  <Description>This plugin adds a blank entry to the top of the respawn screen to avoid streaming in some random grid, and avoid purging replication</Description>
 </PluginData>
