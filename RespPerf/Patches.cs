@@ -131,7 +131,7 @@ namespace RespawnMenuNoPreview
                     ___m_requestedReplicable = replicableId;
                     if (MyMultiplayer.ReplicationLayer is MyReplicationClient myReplicationClient)
                     {
-                        myReplicationClient.RequestReplicable(___m_requestedReplicable, 0, add: true);
+                        myReplicationClient.RequestReplicable(___m_requestedReplicable, 0, true, 0);
                     }
                 }
                 return false;
