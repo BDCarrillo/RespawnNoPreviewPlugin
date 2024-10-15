@@ -42,7 +42,7 @@ namespace RespawnMenuNoPreview
                         typeof(MyGuiScreenMedicals).GetMethod("RequestConfirmation", AccessTools.all).Invoke(__instance, new object[] { });
                         return false;
                     }
-                    typeof(MyGuiScreenMedicals).GetMethod("RequestReplicable", AccessTools.all).Invoke(__instance, new object[] { myRespawnPointInfo.MedicalRoomGridId });
+                    typeof(MyGuiScreenMedicals).GetMethod("RequestReplicable", AccessTools.all).Invoke(__instance, new object[] { myRespawnPointInfo.MedicalRoomGridId, myRespawnPointInfo.MedicalRoomId });
                     instance = __instance;
                     m_requestedReplicable = myRespawnPointInfo.MedicalRoomGridId;
                     MyEntities.OnEntityAdd += OnEntityStreamedIn;
