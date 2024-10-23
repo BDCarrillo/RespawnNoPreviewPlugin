@@ -11,7 +11,6 @@ using System.Text;
 using VRage.Game;
 using VRage.Game.Entity;
 using VRage.Network;
-using VRage.Utils;
 using VRageMath;
 using static SpaceEngineers.Game.World.MySpaceRespawnComponent;
 
@@ -20,7 +19,7 @@ namespace RespawnMenuNoPreview
     public static class Patches
     {
 
-        [HarmonyPatch(typeof(MyGuiScreenMedicals), "ShowPreview")]//Intercept, but right now we're not tinkering with the original
+        [HarmonyPatch(typeof(MyGuiScreenMedicals), "ShowPreview")]
         public static class Patch_MyGuiScreenMedicals_ShowPreview
         {
             public static long m_requestedReplicable;
@@ -34,11 +33,8 @@ namespace RespawnMenuNoPreview
                     MySession.Static.SetCameraController(MyCameraControllerEnum.Spectator);
                     ___m_lastMedicalRoomId = 0L;
                     ___m_isMultiplayerReady = false;
-                    //__instance.ShowBlackground();
-                    //MySession.RequestVicinityCache(myRespawnPointInfo.MedicalRoomGridId);
                     if (!Sync.IsServer && MyEntities.EntityExists(myRespawnPointInfo.MedicalRoomGridId))
                     {
-                        MyLog.Default.WriteLine("RIP: Replication skipped in ShowPreview, obj already in sync");
                         typeof(MyGuiScreenMedicals).GetMethod("RequestConfirmation", AccessTools.all).Invoke(__instance, new object[] { });
                         return false;
                     }
@@ -71,7 +67,7 @@ namespace RespawnMenuNoPreview
                 for (int i = 0; i < ___m_respawnsTable.RowsCount; i++)
                 {
                     var rowtest = ___m_respawnsTable.GetRow(i);
-                    if (rowtest.UserData is MySpaceRespawnComponent.MyRespawnPointInfo myRespawnPointInfo)
+                    if (rowtest.UserData is MyRespawnPointInfo myRespawnPointInfo)
                     {
                         var cell = rowtest.GetCell(1);
                         if (MyEntities.EntityExists(myRespawnPointInfo.MedicalRoomGridId))
@@ -108,9 +104,7 @@ namespace RespawnMenuNoPreview
                     return true;
                 if (___m_respawnsTable.SelectedRow.GetCell(0).Text.EqualsStrFast("  ---  "))
                 {
-                    MyLog.Default.WriteLine("RIP: Unrequest Replication skipped in ShowEmptyPreview");
                     typeof(MyGuiScreenMedicals).GetMethod("ShowBlackground", AccessTools.all).Invoke(__instance, new object[] { });
-                    //UnrequestReplicable();
                     ___m_selectedRowIsStreamable = false;
                     return false;
                 }
@@ -123,15 +117,14 @@ namespace RespawnMenuNoPreview
 
         public static class Patch_MyGuiScreenMedicals_RequestReplicable
         {
-            public static bool Prefix(MyGuiScreenMedicals __instance, long replicableId, long ___m_requestedReplicable)
+            public static bool Prefix(MyGuiScreenMedicals __instance, long replicableId, long ___m_requestedReplicable, long medicalRoomId)
             {
                 if (___m_requestedReplicable != replicableId)
                 {
-                    //typeof(MyGuiScreenMedicals).GetMethod("UnrequestReplicable", AccessTools.all).Invoke(__instance, new object[] { });
                     ___m_requestedReplicable = replicableId;
                     if (MyMultiplayer.ReplicationLayer is MyReplicationClient myReplicationClient)
                     {
-                        myReplicationClient.RequestReplicable(___m_requestedReplicable, 0, true, 0);
+                        myReplicationClient.RequestReplicable(___m_requestedReplicable, 0, true, 0, medicalRoomId);
                     }
                 }
                 return false;
